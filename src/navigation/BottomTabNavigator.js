@@ -33,6 +33,7 @@ function TrackCreateNavigator() {
       <TrackCreateStack.Screen
         name="TrackCreate"
         component={TrackCreateScreen}
+        options={{ headerShown: false }}
       />
     </TrackCreateStack.Navigator>
   );
