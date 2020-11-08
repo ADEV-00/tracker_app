@@ -1,8 +1,14 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TextInput } from "react-native";
 
 const SignInScreen = () => {
-  return <Text style={{ fontSize: 48 }}>SignIn Screen</Text>;
+  return (
+    <View>
+      <View>
+        <Text>Sign In for Tracker</Text>
+      </View>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({});

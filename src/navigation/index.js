@@ -19,7 +19,7 @@ export default function Navigation() {
 }
 
 const Stack = createStackNavigator();
-const isLoggedIn = true;
+const isLoggedIn = false;
 
 function RootNavigator() {
   return (
@@ -35,8 +35,16 @@ function RootNavigator() {
         </>
       ) : (
         <>
-          <Stack.Screen name="SignIn" component={SignInScreen} />
-          <Stack.Screen name="SignUp" component={SignUpScreen} />
+          <Stack.Screen
+            name="SignUp"
+            component={SignUpScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="SignIn"
+            component={SignInScreen}
+            options={{ headerShown: false }}
+          />
         </>
       )}
     </Stack.Navigator>
