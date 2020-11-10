@@ -36,13 +36,13 @@ function RootNavigator() {
       ) : (
         <>
           <Stack.Screen
-            name="SignUp"
-            component={SignUpScreen}
+            name="SignIn"
+            component={SignInScreen}
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name="SignIn"
-            component={SignInScreen}
+            name="SignUp"
+            component={SignUpScreen}
             options={{ headerShown: false }}
           />
         </>
