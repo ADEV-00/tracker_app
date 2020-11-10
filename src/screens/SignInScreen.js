@@ -4,7 +4,7 @@ import { Dimensions } from "react-native";
 
 const { width, height } = Dimensions.get("window");
 
-const SignInScreen = () => {
+const SignInScreen = ({ navigation }) => {
   return (
     <View style={styles.appWrapper}>
       <View style={styles.header}>
@@ -23,11 +23,7 @@ const SignInScreen = () => {
       <View>
         <Text>
           Don't have an account?{" "}
-          <Text
-            onPress={() => {
-              this.props.navigation.navigate("SignUp");
-            }}
-          >
+          <Text onPress={() => navigation.navigate("SignUp")}>
             Sign Up here
           </Text>
         </Text>
