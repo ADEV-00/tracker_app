@@ -44,6 +44,7 @@ const SignInScreen = ({ navigation }) => {
             style={styles.inputIcon}
           />
           <TextInput
+            secureTextEntry={true}
             style={styles.inputText}
             placeholder="Enter your password"
           />
