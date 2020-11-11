@@ -1,6 +1,14 @@
 import React from "react";
-import { View, Text, StyleSheet, TextInput, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import { Dimensions } from "react-native";
+import { Foundation, Fontisto } from "@expo/vector-icons";
 
 const { width, height } = Dimensions.get("window");
 
@@ -19,11 +27,52 @@ const SignInScreen = ({ navigation }) => {
         <Text style={styles.formSubTitle}>
           Use your credentials below and login to your account
         </Text>
+        <View style={styles.inputWrapper}>
+          <Foundation
+            name="mail"
+            size={25}
+            color="#37396C"
+            style={styles.inputIcon}
+          />
+          <TextInput style={styles.inputText} placeholder="Enter your email" />
+        </View>
+        <View style={styles.inputWrapper}>
+          <Fontisto
+            name="locked"
+            size={25}
+            color="#37396C"
+            style={styles.inputIcon}
+          />
+          <TextInput
+            style={styles.inputText}
+            placeholder="Enter your password"
+          />
+        </View>
+        <Text
+          style={{
+            alignSelf: "flex-end",
+            fontWeight: "bold",
+            color: "#292B4D",
+            marginTop: 6,
+          }}
+        >
+          Forgot password
+        </Text>
+        <TouchableOpacity>
+          <View style={styles.btn}>
+            <Text style={{ fontSize: 15, fontWeight: "bold", color: "white" }}>
+              Sign In
+            </Text>
+          </View>
+        </TouchableOpacity>
       </View>
       <View>
-        <Text>
+        <Text style={{ color: "white" }}>
           Don't have an account?{" "}
-          <Text onPress={() => navigation.navigate("SignUp")}>
+          <Text
+            style={{ color: "white", fontWeight: "bold" }}
+            onPress={() => navigation.navigate("SignUp")}
+          >
             Sign Up here
           </Text>
         </Text>
@@ -50,7 +99,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     width: width - 30,
     marginTop: 25,
-    height: height / 1.6,
     borderRadius: 27,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 6 },
@@ -59,6 +107,8 @@ const styles = StyleSheet.create({
     paddingVertical: 35,
     textAlign: "center",
     alignItems: "center",
+    marginBottom: 20,
+    paddingHorizontal: 32,
   },
   formTitle: {
     color: "#191818",
@@ -75,6 +125,38 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#c4c4c4",
     width: width / 2,
+    marginBottom: 35,
+  },
+  inputWrapper: {
+    backgroundColor: "#EFEFF6",
+    width: "100%",
+    height: 50,
+    borderRadius: 5,
+    //borderWidth: 1,
+    //borderColor: "#37396c",
+    flexDirection: "row",
+    alignItems: "center",
+    paddingLeft: 16,
+    overflow: "hidden",
+    marginBottom: 17,
+  },
+  inputIcon: {
+    marginRight: 9,
+  },
+  inputText: {
+    fontWeight: "bold",
+    lineHeight: 12,
+    flex: 1,
+    overflow: "hidden",
+  },
+  btn: {
+    marginTop: 35,
+    width: 221,
+    height: 50,
+    backgroundColor: "#292B4D",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 28,
   },
 });
 
