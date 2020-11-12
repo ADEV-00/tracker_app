@@ -82,7 +82,7 @@ const SignInScreen = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   appWrapper: {
     flex: 1,
     backgroundColor: "#292B4D",
