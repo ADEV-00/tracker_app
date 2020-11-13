@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -13,6 +13,9 @@ import { Foundation, Fontisto } from "@expo/vector-icons";
 const { width, height } = Dimensions.get("window");
 
 const SignUpScreen = ({ navigation }) => {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
   return (
     <View style={styles.appWrapper}>
       <View style={styles.header}>
@@ -34,7 +37,14 @@ const SignUpScreen = ({ navigation }) => {
             color="#37396C"
             style={styles.inputIcon}
           />
-          <TextInput style={styles.inputText} placeholder="Enter your email" />
+          <TextInput
+            style={styles.inputText}
+            placeholder="Enter your email"
+            value={email}
+            onChangeText={(newEmail) => setEmail(newEmail)}
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
         </View>
         <View style={styles.inputWrapper}>
           <Fontisto
@@ -47,9 +57,11 @@ const SignUpScreen = ({ navigation }) => {
             secureTextEntry={true}
             style={styles.inputText}
             placeholder="Enter your password"
+            value={password}
+            onChangeText={(newPassword) => setPassword(newPassword)}
           />
         </View>
-        <View style={styles.inputWrapper}>
+        {/* <View style={styles.inputWrapper}>
           <Fontisto
             name="locked"
             size={25}
@@ -61,7 +73,7 @@ const SignUpScreen = ({ navigation }) => {
             style={styles.inputText}
             placeholder="Confirm password"
           />
-        </View>
+        </View> */}
         <TouchableOpacity>
           <View style={styles.btn}>
             <Text style={{ fontSize: 15, fontWeight: "bold", color: "white" }}>
