@@ -18,6 +18,8 @@ const SignUpScreen = ({ navigation }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
+  console.log(state);
+
   return (
     <View style={styles.appWrapper}>
       <View style={styles.header}>
@@ -78,6 +80,12 @@ const SignUpScreen = ({ navigation }) => {
             placeholder="Confirm password"
           />
         </View> */}
+
+        {state.errorMessage ? (
+          <Text style={{ color: "red", fontWeight: "bold" }}>
+            {state.errorMessage}
+          </Text>
+        ) : null}
         <TouchableOpacity onPress={() => signup({ email, password })}>
           <View style={styles.btn}>
             <Text style={{ fontSize: 15, fontWeight: "bold", color: "white" }}>
