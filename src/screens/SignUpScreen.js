@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   View,
   Text,
@@ -9,10 +9,12 @@ import {
 } from "react-native";
 import { Dimensions } from "react-native";
 import { Foundation, Fontisto } from "@expo/vector-icons";
+import { Context as AuthContext } from "../context/AuthContext";
 
 const { width, height } = Dimensions.get("window");
 
 const SignUpScreen = ({ navigation }) => {
+  const { state, signup } = useContext(AuthContext);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -59,6 +61,8 @@ const SignUpScreen = ({ navigation }) => {
             placeholder="Enter your password"
             value={password}
             onChangeText={(newPassword) => setPassword(newPassword)}
+            autoCapitalize="none"
+            autoCorrect={false}
           />
         </View>
         {/* <View style={styles.inputWrapper}>
@@ -74,7 +78,7 @@ const SignUpScreen = ({ navigation }) => {
             placeholder="Confirm password"
           />
         </View> */}
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => signup({ email, password })}>
           <View style={styles.btn}>
             <Text style={{ fontSize: 15, fontWeight: "bold", color: "white" }}>
               Sign In
