@@ -17,9 +17,6 @@ const SignUpScreen = ({ navigation }) => {
   const { state, signup } = useContext(AuthContext);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-
-  console.log(state);
-
   return (
     <View style={styles.appWrapper}>
       <View style={styles.header}>
