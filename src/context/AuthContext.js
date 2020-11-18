@@ -8,9 +8,22 @@ const authReducer = (state, action) => {
       return { ...state, errorMessage: action.payload };
     case "signup":
       return { errorMessage: "", token: action.payload };
+    case "restoreToken":
+      return { ...state, userToken: action.token };
     default:
       return state;
   }
+};
+
+const getToken = (dispatch) => async () => {
+  let userToken;
+  try {
+    userToken = await AsyncStorage.getItem("token");
+  } catch (err) {
+    console.log(errorMessage);
+  }
+
+  dispatch({ type: "restoreToken", token: userToken });
 };
 
 const signup = (dispatch) => async ({ email, password }) => {
