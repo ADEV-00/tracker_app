@@ -9,6 +9,10 @@ import BottomTabNavigator from "./BottomTabNavigator";
 import { Context as AuthContext } from "../context/AuthContext";
 
 export default function Navigation() {
+  const { getToken } = useContext(AuthContext);
+  useEffect(() => {
+    getToken();
+  }, []);
   return (
     <NavigationContainer>
       <RootNavigator />
@@ -22,9 +26,6 @@ const isLoggedIn = false;
 function RootNavigator() {
   const { state, getToken } = useContext(AuthContext);
 
-  useEffect(() => {
-    getToken();
-  }, []);
   return (
     <Stack.Navigator>
       {state.token != null ? (
