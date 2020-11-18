@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import SignInScreen from "../screens/SignInScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import TrackDetailScreen from "../screens/TrackDetailScreen";
@@ -20,8 +20,11 @@ const Stack = createStackNavigator();
 const isLoggedIn = false;
 
 function RootNavigator() {
-  const { state, restoreToken } = useContext(AuthContext);
-  console.log(state.token);
+  const { state, getToken } = useContext(AuthContext);
+
+  useEffect(() => {
+    getToken();
+  }, []);
   return (
     <Stack.Navigator>
       {state.token != null ? (

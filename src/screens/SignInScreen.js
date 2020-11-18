@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import {
   View,
   Text,
@@ -9,10 +9,15 @@ import {
 } from "react-native";
 import { Dimensions } from "react-native";
 import { Foundation, Fontisto } from "@expo/vector-icons";
+import { Context } from "../context/AuthContext";
 
 const { width, height } = Dimensions.get("window");
 
 const SignInScreen = ({ navigation }) => {
+  const { state, signin } = useContext(Context);
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
   return (
     <View style={styles.appWrapper}>
       <View style={styles.header}>
@@ -34,7 +39,14 @@ const SignInScreen = ({ navigation }) => {
             color="#37396C"
             style={styles.inputIcon}
           />
-          <TextInput style={styles.inputText} placeholder="Enter your email" />
+          <TextInput
+            style={styles.inputText}
+            placeholder="Enter your email"
+            value={email}
+            onChangeText={(newEmail) => setEmail(newEmail)}
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
         </View>
         <View style={styles.inputWrapper}>
           <Fontisto
@@ -47,6 +59,10 @@ const SignInScreen = ({ navigation }) => {
             secureTextEntry={true}
             style={styles.inputText}
             placeholder="Enter your password"
+            value={password}
+            onChangeText={(newPassword) => setPassword(newPassword)}
+            autoCapitalize="none"
+            autoCorrect={false}
           />
         </View>
         <Text
@@ -59,7 +75,7 @@ const SignInScreen = ({ navigation }) => {
         >
           Forgot password
         </Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => signin({ email, password })}>
           <View style={styles.btn}>
             <Text style={{ fontSize: 15, fontWeight: "bold", color: "white" }}>
               Sign In
