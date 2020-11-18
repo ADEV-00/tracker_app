@@ -1,8 +1,13 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import Map from "../components/Map";
 
 const TrackCreateScreen = () => {
-  return <Text style={{ fontSize: 48 }}>Track Create Screen</Text>;
+  return (
+    <View>
+      <Map />
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({});
