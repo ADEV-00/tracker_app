@@ -31,9 +31,9 @@ const Map = () => {
     >
       <Circle
         center={currentLocation.coords}
-        radius={120}
+        radius={20}
         strokeColor="rgba(0, 176, 238, 1.0)"
-        fillColor="rgba(0, 176, 238, 0.5)"
+        fillColor="rgba(0, 176, 238, 1.0)"
       />
     </MapView>
   );
