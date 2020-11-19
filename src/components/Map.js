@@ -19,7 +19,7 @@ const Map = () => {
       style={styles.map}
       customMapStyle={mapStyle}
       initialRegion={defaultRoute}
-    />
+    ></MapView>
   );
 };
 
