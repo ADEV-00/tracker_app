@@ -41,6 +41,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "red",
   },
+  trackForm: {
+    zIndex: 100,
+  },
 });
 
 export default TrackCreateScreen;

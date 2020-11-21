@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -8,24 +8,53 @@ import {
   Dimensions,
 } from "react-native";
 import { withSafeAreaInsets } from "react-native-safe-area-context";
+import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 
 const { width, height } = Dimensions.get("window");
 
 const TrackForm = () => {
+  const [toggle, setToggle] = useState(false);
   return (
     <>
-      <View style={styles.formWrapper}>
-        <TextInput
-          placeholder="Name"
-          placeholderTextColor="#FFF"
-          style={styles.textInput}
-        />
-        <TouchableOpacity onPress={() => console.log("CLICK")}>
-          <View style={styles.recordBtn}>
-            <Text style={styles.btnText}>Start</Text>
+      {toggle ? (
+        <>
+          <View style={styles.formWrapper}>
+            <TextInput
+              placeholder="Enter name"
+              placeholderTextColor="#FFF"
+              style={styles.textInput}
+            />
+            <TouchableOpacity onPress={() => setToggle(false)}>
+              <View style={styles.recordBtn}>
+                <Text style={styles.btnText}>Start</Text>
+              </View>
+            </TouchableOpacity>
           </View>
+          <TouchableOpacity
+            style={styles.btnWrapper}
+            onPress={() => setToggle(false)}
+          >
+            <FontAwesome
+              name="close"
+              size={35}
+              color="#2D2C45"
+              style={{ transform: [{ rotate: "-45deg" }] }}
+            />
+          </TouchableOpacity>
+        </>
+      ) : (
+        <TouchableOpacity
+          style={styles.btnWrapper}
+          onPress={() => setToggle(true)}
+        >
+          <FontAwesome5
+            name="play"
+            size={25}
+            color="#2D2C45"
+            style={{ transform: [{ rotate: "-45deg" }] }}
+          />
         </TouchableOpacity>
-      </View>
+      )}
     </>
   );
 };
@@ -64,6 +93,19 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#252539",
     fontSize: 22,
+  },
+  btnWrapper: {
+    position: "absolute",
+    bottom: height / 10,
+    left: width / 2 - 28,
+    width: 50,
+    height: 50,
+    backgroundColor: "#3AEBF6",
+    zIndex: 20,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    transform: [{ rotate: "45deg" }],
   },
 });
 
