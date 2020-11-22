@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   View,
   Text,
@@ -9,10 +9,17 @@ import {
 } from "react-native";
 import { withSafeAreaInsets } from "react-native-safe-area-context";
 import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
+import { Context as LocationContext } from "../context/LocationContext";
 
 const { width, height } = Dimensions.get("window");
 
 const TrackForm = () => {
+  const {
+    state: { name, recording },
+    startRecording,
+    stopRecording,
+    changeName,
+  } = useContext(LocationContext);
   const [toggle, setToggle] = useState(false);
   return (
     <>
@@ -20,11 +27,13 @@ const TrackForm = () => {
         <>
           <View style={styles.formWrapper}>
             <TextInput
+              value={name}
               placeholder="Enter name"
               placeholderTextColor="#FFF"
               style={styles.textInput}
+              onChangeText={changeName}
             />
-            <TouchableOpacity onPress={() => setToggle(false)}>
+            <TouchableOpacity onPress={startRecording}>
               <View style={styles.recordBtn}>
                 <Text style={styles.btnText}>Start</Text>
               </View>
@@ -106,6 +115,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     transform: [{ rotate: "45deg" }],
+    elevation: 4,
   },
 });
 

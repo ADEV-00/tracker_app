@@ -8,9 +8,11 @@ import { useIsFocused } from "@react-navigation/native";
 import TrackForm from "../components/TrackForm";
 
 const TrackCreateScreen = () => {
-  const { addLocation } = useContext(LocationContext);
+  const { state, addLocation } = useContext(LocationContext);
   const isFocused = useIsFocused();
-  const [err] = useLocation(isFocused, addLocation);
+  const [err] = useLocation(isFocused, (location) => {
+    addLocation(location, state.recording);
+  });
 
   return (
     <View>
