@@ -8,7 +8,7 @@ import {
   Dimensions,
 } from "react-native";
 import { withSafeAreaInsets } from "react-native-safe-area-context";
-import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
+import { FontAwesome, FontAwesome5, MaterialIcons } from "@expo/vector-icons";
 import { Context as LocationContext } from "../context/LocationContext";
 
 const { width, height } = Dimensions.get("window");
@@ -22,7 +22,7 @@ const TrackForm = () => {
   } = useContext(LocationContext);
   const [toggle, setToggle] = useState(false);
 
-  //Vary bad toggle component handling
+  //Vary bad toggle handling !!!!
   let toggleRecStopIcon;
   let toggleRecStopFunction;
   if (recording && toggle === false) {
@@ -32,19 +32,51 @@ const TrackForm = () => {
     toggleRecStopIcon = "play";
     toggleRecStopFunction = () => setToggle(true);
   }
-
   return (
     <>
       {toggle ? (
         <>
           <View style={styles.formWrapper}>
-            <TextInput
+            <Text
+              style={{
+                fontWeight: "bold",
+                color: "#5E5E85",
+                marginBottom: 15,
+                fontSize: 20,
+              }}
+            >
+              Choose exercise
+            </Text>
+            <View style={styles.btnListWrapper}>
+              <TouchableOpacity
+                style={styles.btnAction}
+                onPress={() => changeName("Walking")}
+              >
+                <FontAwesome5 name="walking" size={40} color="#5E5E85" />
+                <Text style={styles.btnActionText}>Walking</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.btnAction}
+                onPress={() => changeName("Running")}
+              >
+                <FontAwesome5 name="running" size={40} color="#5E5E85" />
+                <Text style={styles.btnActionText}>Running</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.btnAction}
+                onPress={() => changeName("Biking")}
+              >
+                <FontAwesome5 name="bicycle" size={35} color="#5E5E85" />
+                <Text style={styles.btnActionText}>Biking</Text>
+              </TouchableOpacity>
+            </View>
+            {/* <TextInput
               value={name}
               placeholder="Enter name"
               placeholderTextColor="#FFF"
               style={styles.textInput}
               onChangeText={changeName}
-            />
+            /> */}
             <TouchableOpacity
               onPress={() => {
                 startRecording();
@@ -92,7 +124,7 @@ const styles = StyleSheet.create({
     width: width / 1.3,
     zIndex: 100,
     backgroundColor: "#2D2C45",
-    height: height / 4,
+    //height: height / 4,
     top: width / 2,
     borderRadius: 10,
     paddingVertical: 23,
@@ -133,6 +165,23 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     transform: [{ rotate: "45deg" }],
     elevation: 4,
+  },
+  btnListWrapper: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 29,
+  },
+  btnAction: {
+    width: 60,
+    height: 80,
+    backgroundColor: "#252539",
+    borderRadius: 5,
+    alignItems: "center",
+    justifyContent: "space-around",
+  },
+  btnActionText: {
+    color: "#5E5E85",
+    fontWeight: "bold",
   },
 });
 
