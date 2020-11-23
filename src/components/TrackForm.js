@@ -21,6 +21,18 @@ const TrackForm = () => {
     changeName,
   } = useContext(LocationContext);
   const [toggle, setToggle] = useState(false);
+
+  //Vary bad toggle component handling
+  let toggleRecStopIcon;
+  let toggleRecStopFunction;
+  if (recording && toggle === false) {
+    toggleRecStopIcon = "stop";
+    toggleRecStopFunction = stopRecording;
+  } else {
+    toggleRecStopIcon = "play";
+    toggleRecStopFunction = () => setToggle(true);
+  }
+
   return (
     <>
       {toggle ? (
@@ -33,7 +45,12 @@ const TrackForm = () => {
               style={styles.textInput}
               onChangeText={changeName}
             />
-            <TouchableOpacity onPress={startRecording}>
+            <TouchableOpacity
+              onPress={() => {
+                startRecording();
+                setToggle(false);
+              }}
+            >
               <View style={styles.recordBtn}>
                 <Text style={styles.btnText}>Start</Text>
               </View>
@@ -54,10 +71,10 @@ const TrackForm = () => {
       ) : (
         <TouchableOpacity
           style={styles.btnWrapper}
-          onPress={() => setToggle(true)}
+          onPress={toggleRecStopFunction}
         >
           <FontAwesome5
-            name="play"
+            name={toggleRecStopIcon}
             size={25}
             color="#2D2C45"
             style={{ transform: [{ rotate: "-45deg" }] }}
