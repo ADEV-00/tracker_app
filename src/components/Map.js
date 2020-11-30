@@ -9,7 +9,7 @@ const { width, height } = Dimensions.get("window");
 
 const Map = () => {
   const {
-    state: { currentLocation },
+    state: { currentLocation, locations },
   } = useContext(LocationContext);
   if (!currentLocation) {
     return <ActivityIndicator site="large" style={{ marginTop: 200 }} />;
@@ -29,6 +29,11 @@ const Map = () => {
         radius={20}
         strokeColor="rgba(0, 176, 238, 1.0)"
         fillColor="rgba(0, 176, 238, 1.0)"
+      />
+      <Polyline
+        coordinates={locations.map((loc) => loc.coords)}
+        strokeWidth={4}
+        strokeColor="rgba(0, 176, 238, 0.7)"
       />
     </MapView>
   );
