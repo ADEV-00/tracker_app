@@ -52,21 +52,33 @@ const TrackForm = () => {
                 style={styles.btnAction}
                 onPress={() => changeName("Walking")}
               >
-                <FontAwesome5 name="walking" size={40} color="#5E5E85" />
+                <FontAwesome5
+                  name="walking"
+                  size={40}
+                  color={name !== "Walking" ? "#5E5E85" : "#3AEBF6"}
+                />
                 <Text style={styles.btnActionText}>Walking</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.btnAction}
                 onPress={() => changeName("Running")}
               >
-                <FontAwesome5 name="running" size={40} color="#5E5E85" />
+                <FontAwesome5
+                  name="running"
+                  size={40}
+                  color={name !== "Running" ? "#5E5E85" : "#3AEBF6"}
+                />
                 <Text style={styles.btnActionText}>Running</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.btnAction}
                 onPress={() => changeName("Biking")}
               >
-                <FontAwesome5 name="bicycle" size={35} color="#5E5E85" />
+                <FontAwesome5
+                  name="bicycle"
+                  size={35}
+                  color={name !== "Biking" ? "#5E5E85" : "#3AEBF6"}
+                />
                 <Text style={styles.btnActionText}>Biking</Text>
               </TouchableOpacity>
             </View>
@@ -82,6 +94,7 @@ const TrackForm = () => {
                 startRecording();
                 setToggle(false);
               }}
+              disabled={name ? false : true}
             >
               <View style={styles.recordBtn}>
                 <Text style={styles.btnText}>Start</Text>
