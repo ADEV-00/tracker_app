@@ -10,12 +10,13 @@ import {
 import { withSafeAreaInsets } from "react-native-safe-area-context";
 import { FontAwesome, FontAwesome5, MaterialIcons } from "@expo/vector-icons";
 import { Context as LocationContext } from "../context/LocationContext";
+import { LocationSubscriber } from "expo-location/build/LocationSubscribers";
 
 const { width, height } = Dimensions.get("window");
 
 const TrackForm = () => {
   const {
-    state: { name, recording },
+    state: { name, recording, locations },
     startRecording,
     stopRecording,
     changeName,
@@ -126,6 +127,13 @@ const TrackForm = () => {
           />
         </TouchableOpacity>
       )}
+      {!recording && locations.length ? (
+        <TouchableOpacity style={styles.btnSave}>
+          <Text style={{ fontWeight: "bold", fontSize: 18, color: "white" }}>
+            Save
+          </Text>
+        </TouchableOpacity>
+      ) : null}
     </>
   );
 };
@@ -195,6 +203,18 @@ const styles = StyleSheet.create({
   btnActionText: {
     color: "#5E5E85",
     fontWeight: "bold",
+  },
+  btnSave: {
+    position: "absolute",
+    zIndex: 100,
+    bottom: height / 5,
+    left: width / 2 - 50,
+    backgroundColor: "#3AEBF6",
+    width: 90,
+    height: 40,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 25,
   },
 });
 
