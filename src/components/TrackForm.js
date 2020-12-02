@@ -11,6 +11,8 @@ import { withSafeAreaInsets } from "react-native-safe-area-context";
 import { FontAwesome, FontAwesome5, MaterialIcons } from "@expo/vector-icons";
 import { Context as LocationContext } from "../context/LocationContext";
 import { LocationSubscriber } from "expo-location/build/LocationSubscribers";
+import useSaveTrack from "../hooks/useSaveTrack";
+import { useNavigation } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("window");
 
@@ -22,6 +24,8 @@ const TrackForm = () => {
     changeName,
   } = useContext(LocationContext);
   const [toggle, setToggle] = useState(false);
+  const [saveTrack] = useSaveTrack();
+  const navigation = useNavigation();
 
   //Vary bad toggle handling !!!!
   let toggleRecStopIcon;
@@ -128,8 +132,14 @@ const TrackForm = () => {
         </TouchableOpacity>
       )}
       {!recording && locations.length ? (
-        <TouchableOpacity style={styles.btnSave}>
-          <Text style={{ fontWeight: "bold", fontSize: 18, color: "white" }}>
+        <TouchableOpacity
+          style={styles.btnSave}
+          onPress={async () => {
+            await saveTrack();
+            navigation.navigate("TrackList");
+          }}
+        >
+          <Text style={{ fontWeight: "bold", fontSize: 18, color: "#2D2C45" }}>
             Save
           </Text>
         </TouchableOpacity>
