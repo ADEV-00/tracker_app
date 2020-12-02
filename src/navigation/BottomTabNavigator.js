@@ -43,7 +43,11 @@ const AcountStack = createStackNavigator();
 function AcountNavigator() {
   return (
     <AcountStack.Navigator>
-      <AcountStack.Screen name="TrackCreate" component={AccountScreen} />
+      <AcountStack.Screen
+        name="TrackCreate"
+        component={AccountScreen}
+        options={{ headerShown: false }}
+      />
     </AcountStack.Navigator>
   );
 }
