@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import { Context } from "../context/AuthContext";
 import { Dimensions, Dimenstion } from "react-native";
 import { FontAwesome, FontAwesome5, MaterialIcons } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const { width, height } = Dimensions.get("window");
 
@@ -22,6 +23,9 @@ const AccountScreen = () => {
         </View>
       </View>
       <View style={styles.infoWrapper}>
+        <View style={styles.editBtn}>
+          <FontAwesome5 name="edit" size={15} color="#3aebf6" />
+        </View>
         <Text style={styles.infoTitle}>Information</Text>
         <View style={styles.infoText}>
           <Text style={styles.label}>Username:</Text>
@@ -88,6 +92,7 @@ const styles = StyleSheet.create({
   },
   infoWrapper: {
     alignSelf: "center",
+    position: "relative",
     backgroundColor: "#252539",
     width: width - 80,
     padding: 12,
@@ -101,7 +106,6 @@ const styles = StyleSheet.create({
     shadowRadius: 4.65,
 
     elevation: 6,
-    overflow: "scroll",
   },
   infoTitle: {
     fontSize: 20,
@@ -123,6 +127,18 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     color: "#3aebf6",
+  },
+  editBtn: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: 35,
+    height: 35,
+    backgroundColor: "#1E1E2E",
+    position: "absolute",
+    right: 0,
+    top: 0,
+    borderTopRightRadius: 10,
+    borderBottomLeftRadius: 10,
   },
 });
 
