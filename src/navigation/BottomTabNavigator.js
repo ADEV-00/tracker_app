@@ -21,7 +21,11 @@ const TrackListStack = createStackNavigator();
 function TrackListNavigator() {
   return (
     <TrackListStack.Navigator>
-      <TrackListStack.Screen name="TrackList" component={TrackListScreen} />
+      <TrackListStack.Screen
+        name="TrackList"
+        component={TrackListScreen}
+        options={{ headerShown: false }}
+      />
     </TrackListStack.Navigator>
   );
 }
