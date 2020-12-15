@@ -47,7 +47,9 @@ const TrackListScreen = ({ navigation }) => {
                 <Text style={styles.itemTitle}>{item.name}</Text>
                 <TouchableOpacity
                   style={styles.btnMore}
-                  onPress={() => navigation.navigate("TrackDetail")}
+                  onPress={() =>
+                    navigation.navigate("TrackDetail", { _id: item._id })
+                  }
                 >
                   <Text style={{ fontSize: 16, color: "#01ABC7" }}>More</Text>
                 </TouchableOpacity>
